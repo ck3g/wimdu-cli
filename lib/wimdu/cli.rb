@@ -5,6 +5,7 @@ module Wimdu
 
       options = {
         'list' => Wimdu::OptionHandler::List,
+        'show' => Wimdu::OptionHandler::Show,
         'new' => Wimdu::OptionHandler::New,
         'continue' => Wimdu::OptionHandler::Continue,
         'help' => Wimdu::OptionHandler::Help

@@ -30,16 +30,16 @@ module Wimdu
       update status: 'published'
     end
 
+    def manageable_fields
+      %i(title address guests property_type nightly_rate email phone)
+    end
+
     private
 
     def self.uniq_slug
       slug = SlugGenerator.generate
       slug = SlugGenerator.generate while find_by(slug: slug)
       slug
-    end
-
-    def manageable_fields
-      %i(title address guests property_type nightly_rate email phone)
     end
   end
 end
