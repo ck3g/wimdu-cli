@@ -3,6 +3,16 @@ require "spec_helper"
 RSpec.describe "Wimdu CLI" do
   let(:exe) { File.expand_path('../../bin/wimdu', __FILE__) }
 
+  describe "list" do
+    let(:cmd) { "#{exe} list" }
+
+    it "allows to list available offers" do
+      CliProcess.new(cmd).tap do |p|
+        expect(p).to have_output("No offers found.")
+      end
+    end
+  end
+
   describe "new" do
     let(:cmd) { "#{exe} new" }
     let(:process) { CliProcess.new(cmd) }
@@ -36,6 +46,16 @@ RSpec.describe "Wimdu CLI" do
       CliProcess.new("#{exe} continue #{code}").tap do |p|
         expect(p).to have_output("Continuing with property #{code}")
         # FIXME: Please extend!
+      end
+    end
+  end
+
+  describe "passing invalid args" do
+    let(:cmd) { "#{exe} invalid-argument" }
+
+    it "displays warning message" do
+      CliProcess.new(cmd).tap do |p|
+        expect(p).to have_output("Invalid args.")
       end
     end
   end
