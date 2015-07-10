@@ -1,4 +1,7 @@
 require 'pry'
+require 'ostruct'
+
+require 'wimdu/property'
 
 require 'wimdu/cli'
 require 'wimdu/option_handler/base'
