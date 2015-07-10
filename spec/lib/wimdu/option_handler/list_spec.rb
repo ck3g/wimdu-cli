@@ -1,10 +1,11 @@
-require 'wimdu'
+require 'spec_helper'
 
 RSpec.describe Wimdu::OptionHandler::List do
   describe '#run' do
     context 'when there is available properties' do
       let(:property) do
-        OpenStruct.new(id: 'ABC1DEF2', title: 'Amazing Room at Wimdu Office')
+        Wimdu::Property.create slug: 'ABC1DEF2',
+                               title: 'Amazing Room at Wimdu Office'
       end
 
       before do

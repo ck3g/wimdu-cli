@@ -1,7 +1,9 @@
 module Wimdu
   class Property
-    def self.all
-      []
-    end
+    include DataMapper::Resource
+
+    property :id, Serial
+    property :slug, String
+    property :title, String
   end
 end

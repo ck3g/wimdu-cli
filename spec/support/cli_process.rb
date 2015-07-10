@@ -4,7 +4,7 @@ require "expect"
 class CliProcess
   def initialize(command, timeout = 1)
     @command = command
-    @timeout = 1
+    @timeout = timeout
   end
 
   def type(string)

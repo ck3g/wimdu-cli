@@ -1,6 +1,8 @@
 module Wimdu
   class CLI
     def run(args = ARGV)
+      Wimdu::DbConnection.init!
+
       options = {
         'list' => Wimdu::OptionHandler::List,
         'new' => Wimdu::OptionHandler::New,

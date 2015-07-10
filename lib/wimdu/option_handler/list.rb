@@ -7,7 +7,7 @@ module Wimdu
           puts "Found #{properties.count} offer."
           puts
           properties.each do |property|
-            puts "#{property.id}: #{property.title}"
+            puts "#{property.slug}: #{property.title}"
           end
         else
           puts "No offers found."

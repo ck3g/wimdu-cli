@@ -1,4 +1,5 @@
 require_relative "support/cli_process"
+require 'wimdu'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -13,7 +14,9 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.disable_monkey_patching!
 
-  config.warnings = true
+  # data_mapper generates huge amount of warnings
+  # There is issue openned for years: https://github.com/datamapper/dm-core/issues/172
+  # config.warnings = true
 
   if config.files_to_run.one?
     config.default_formatter = 'doc'
@@ -22,4 +25,9 @@ RSpec.configure do |config|
   config.order = :random
 
   Kernel.srand config.seed
+
+  config.before do
+    Wimdu::DbConnection.init!('test_')
+    DataMapper.auto_migrate!
+  end
 end

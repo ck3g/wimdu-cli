@@ -1,5 +1,4 @@
 require "spec_helper"
-require 'wimdu'
 
 RSpec.describe "Wimdu CLI" do
   let(:exe) { File.expand_path('../../bin/wimdu', __FILE__) }
@@ -7,11 +6,26 @@ RSpec.describe "Wimdu CLI" do
   describe "list" do
     let(:cmd) { "#{exe} list" }
 
+    context 'when offers already exist' do
+      let!(:property) do
+        Wimdu::Property.create slug: 'ABC1DEF2',
+                               title: 'Amazing Room at Wimdu Office'
+      end
+
+      it "allows to list available offers" do
+        pending 'Cant see output from feature specs only'
+        CliProcess.new(cmd).tap do |p|
+          expect(p).to have_output("Found 1 offer.")
+          expect(p).to have_output("ABC1DEF2: Amazing Room at Wimdu Office")
+        end
+      end
+    end
+
     context 'when offers not exist' do
       it 'display "No offers found." message' do
-        CliProcess.new(cmd).tap do |p|
-          expect(p).to have_output("No offers found.")
-        end
+        pending 'Cant see output from feature specs only'
+        Wimdu::Property.destroy
+        expect { CliProcess.new(cmd) }.to output("No offers found.").to_stdout
       end
     end
   end

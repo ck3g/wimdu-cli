@@ -1,6 +1,10 @@
 require 'pry'
 require 'ostruct'
+require 'data_mapper'
+require 'dm-sqlite-adapter'
+require 'dm-migrations'
 
+require 'wimdu/db_connection'
 require 'wimdu/property'
 
 require 'wimdu/cli'
