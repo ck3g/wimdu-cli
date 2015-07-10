@@ -16,5 +16,29 @@ RSpec.describe Wimdu::OptionHandler::Continue do
         expect { subject }.to output(/Invalid property./).to_stdout
       end
     end
+
+    context 'when property exists' do
+      let!(:property) do
+        property = Wimdu::Property.create_uniq
+        property.update title: 'Awesome Room'
+        property
+      end
+      let(:slug) { property.slug }
+
+      it "skip existing fields" do
+        expect { subject }.not_to output(/Title: /).to_stdout
+      end
+
+      it "continue from missing fields" do
+        expect { subject }.to output(/Address: /).to_stdout
+      end
+
+      it "updates property address" do
+        expect {
+          subject
+          property.reload
+        }.to change { property.address }.to 'Central Street'
+      end
+    end
   end
 end

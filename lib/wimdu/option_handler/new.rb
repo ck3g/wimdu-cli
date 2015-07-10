@@ -14,17 +14,8 @@ module Wimdu
 
       private
 
-      def handle_field_input(field_name, property)
-        puts "#{fields[field_name]}: "
-        data = STDIN.gets.chomp
-        property.update field_name => data
-      end
-
       def fields
-        {
-          title: 'Title',
-          address: 'Address'
-        }
+        %i(title address)
       end
     end
   end

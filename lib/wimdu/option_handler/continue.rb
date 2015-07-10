@@ -10,8 +10,9 @@ module Wimdu
         if property
           puts "Continuing with property #{slug}."
           puts
-          puts "Address: "
-          address = STDIN.gets
+          %i(address).each do |field_name|
+            handle_field_input field_name, property
+          end
         else
           puts "Invalid property."
         end
