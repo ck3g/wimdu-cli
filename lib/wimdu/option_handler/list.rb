@@ -4,7 +4,8 @@ module Wimdu
       def run
         properties = Wimdu::Property.published
         if properties.any?
-          puts "Found #{properties.count} offer."
+          cnt = properties.count
+          puts "Found #{cnt} #{"offer".pluralize(cnt)}."
           puts
           properties.each do |property|
             puts "#{property.slug}: #{property.title}"
