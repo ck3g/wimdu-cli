@@ -10,9 +10,7 @@ module Wimdu
         if property
           puts "Continuing with property #{slug}."
           puts
-          property.missing_fields.each do |field_name|
-            handle_field_input field_name, property
-          end
+          PropertyInput.new(property).perform
         else
           puts "Invalid property."
         end
