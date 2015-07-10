@@ -22,7 +22,7 @@ module Wimdu
       data = STDIN.gets.chomp
       property.public_send(:"#{field_name}=", data)
       unless property.update_attributes field_name => data
-        puts "Error: #{property.errors.messages[field_name].join(', ')}"
+        display_validation_error field_name
         handle_field_input field_name
       end
     end
@@ -31,6 +31,12 @@ module Wimdu
       return unless missing_fields.empty?
       puts "Great job! Listing #{property.slug} is complete!"
       property.publish!
+    end
+
+    def display_validation_error(field_name)
+      puts
+      puts "Error: #{property.errors.messages[field_name].join(', ')}"
+      puts
     end
   end
 end
