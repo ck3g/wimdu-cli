@@ -6,7 +6,8 @@ RSpec.describe Wimdu::OptionHandler::Continue do
 
     before do
       allow(STDIN).to receive(:gets)
-        .and_return "Central Street", '2'
+        .and_return("Central Street", '2', 'apartment',
+                    '12', 'john.doe@example.com', '+1 123 45678')
     end
 
     context 'when invalid property slug' do

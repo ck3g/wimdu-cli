@@ -6,7 +6,8 @@ RSpec.describe Wimdu::OptionHandler::New do
 
     before do
       allow(STDIN).to receive(:gets)
-        .and_return "Awesome Room", "Central Street", '2'
+      .and_return("Awesome Room", "Central Street", '2', 'apartment',
+                  '12', 'john.doe@example.com', '+1 123 45678')
     end
 
     it "outputs prompt with new Property slug" do

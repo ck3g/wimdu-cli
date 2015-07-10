@@ -1,8 +1,15 @@
 module Wimdu
   class Property < ActiveRecord::Base
+    PROPERTY_TYPES = ['holiday home', 'apartment', 'private room']
+
     validates :guests, numericality: { only_integer: true,
                                        message: 'must be a number' },
-                       if: 'guests.present?'
+                       allow_blank: true
+    validates :nightly_rate, numericality: { only_integer: true,
+                                             message: 'must be a number' },
+                              allow_blank: true
+    validates :property_type, inclusion: { in: PROPERTY_TYPES },
+                              allow_blank: true
 
     def self.create_uniq
       create slug: uniq_slug
@@ -33,7 +40,7 @@ module Wimdu
     end
 
     def manageable_fields
-      %i(title address guests)
+      %i(title address guests property_type nightly_rate email phone)
     end
   end
 end

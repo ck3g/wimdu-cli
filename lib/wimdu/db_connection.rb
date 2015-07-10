@@ -15,6 +15,10 @@ module Wimdu
             t.column :title, :string
             t.column :address, :string
             t.column :guests, :integer
+            t.column :property_type, :string
+            t.column :nightly_rate, :integer
+            t.column :email, :string
+            t.column :phone, :string
             t.column :status, :string, default: 'draft'
           end
         end
