@@ -1,23 +1,16 @@
 module Wimdu
-  class Property
-    include DataMapper::Resource
-
-    property :id, Serial
-    property :slug, String
-    property :title, String
-    property :address, String
-    property :status, String, default: 'draft'
+  class Property < ActiveRecord::Base
 
     def self.create_uniq
       create slug: uniq_slug
     end
 
     def self.published
-      all status: 'published'
+      where status: 'published'
     end
 
     def self.draft
-      all status: 'draft'
+      where status: 'draft'
     end
 
     def missing_fields
@@ -32,7 +25,7 @@ module Wimdu
 
     def self.uniq_slug
       slug = SlugGenerator.generate
-      slug = SlugGenerator.generate while first(slug: slug)
+      slug = SlugGenerator.generate while find_by(slug: slug)
       slug
     end
 

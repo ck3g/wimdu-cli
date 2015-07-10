@@ -1,9 +1,7 @@
 require 'pry'
 require 'ostruct'
 require 'securerandom'
-require 'data_mapper'
-require 'dm-sqlite-adapter'
-require 'dm-migrations'
+require 'active_record'
 
 require 'wimdu/ext/object'
 
