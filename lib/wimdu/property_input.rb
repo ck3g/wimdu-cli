@@ -26,6 +26,7 @@ module Wimdu
     def display_success_message
       return unless missing_fields.empty?
       puts "Great job! Listing #{property.slug} is complete!"
+      property.publish!
     end
   end
 end
