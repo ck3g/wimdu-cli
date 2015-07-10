@@ -18,6 +18,13 @@ RSpec.describe Wimdu::PropertyInput do
           .to output(%r{Great job! Listing #{slug} is complete!})
           .to_stdout
       end
+
+      it "publish property" do
+        expect {
+          subject
+          property.reload
+        }.to change { property.status }.from('draft').to 'published'
+      end
     end
 
     context 'when property has missing fields' do

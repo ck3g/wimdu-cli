@@ -2,10 +2,15 @@ require 'spec_helper'
 
 RSpec.describe Wimdu::OptionHandler::List do
   describe '#run' do
+    before do
+      Wimdu::Property.create title: 'Amazing (but draft) Room at Wimdu Office'
+    end
+
     context 'when there is available properties' do
       let(:property) do
         Wimdu::Property.create slug: 'ABC1DEF2',
-                               title: 'Amazing Room at Wimdu Office'
+                               title: 'Amazing Room at Wimdu Office',
+                               status: 'published'
       end
 
       before do

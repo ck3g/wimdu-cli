@@ -6,7 +6,7 @@ module Wimdu
       end
 
       def run
-        property = Property.first(slug: slug)
+        property = Property.draft.first(slug: slug)
         if property
           puts "Continuing with property #{slug}."
           puts
