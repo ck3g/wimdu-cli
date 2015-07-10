@@ -10,7 +10,12 @@ RSpec.describe Wimdu::PropertyInput do
       let!(:property) do
         Wimdu::Property.create slug: slug,
                                title: 'Awesome Room',
-                               address: 'Central Street'
+                               address: 'Central Street',
+                               guests: 2,
+                               property_type: 'apartment',
+                               nightly_rate: 12,
+                               email: 'john.doe@example.com',
+                               phone: '+1 123 45678'
       end
 
       it "displays success message" do
@@ -38,6 +43,24 @@ RSpec.describe Wimdu::PropertyInput do
 
       it "do not display success message" do
         expect { subject }.not_to output(%r{Great job!}).to_stdout
+      end
+    end
+
+    context 'when field fails with validation error' do
+      let!(:property) do
+        Wimdu::Property.create slug: slug,
+                               title: 'Awesome Room',
+                               address: 'Central Street'
+      end
+
+      before do
+        allow(STDIN).to receive(:gets)
+          .and_return("two", '2', 'apartment',
+                      '12', 'john.doe@example.com', '+1 123 45678')
+      end
+
+      it "display error message for missing field" do
+        expect { subject }.to output(/Error: must be a number/).to_stdout
       end
     end
   end

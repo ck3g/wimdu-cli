@@ -48,8 +48,7 @@ RSpec.describe "Wimdu CLI" do
   end
 
   describe "continue" do
-    it "allows for resuming data entry" do
-      pending ""
+    xit "allows for resuming data entry" do
       code = nil
 
       CliProcess.new("#{exe} new").tap do |p|
