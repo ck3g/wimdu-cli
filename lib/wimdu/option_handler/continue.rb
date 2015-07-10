@@ -1,22 +1,27 @@
 module Wimdu
   module OptionHandler
     class Continue < Base
-      def initialize(property_id)
-        @property_id = property_id
+      def initialize(slug)
+        @slug = slug
       end
 
       def run
-        puts "Continuing with property #{property_id}."
-        puts
-        puts "Address: "
-        address = STDIN.gets
+        property = Property.first(slug: slug)
+        if property
+          puts "Continuing with property #{slug}."
+          puts
+          puts "Address: "
+          address = STDIN.gets
+        else
+          puts "Invalid property."
+        end
 
         true
       end
 
       private
 
-      attr_reader :property_id
+      attr_reader :slug
     end
   end
 end
