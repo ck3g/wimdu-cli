@@ -89,3 +89,8 @@ control system we'd appreciate instructions on how to recreate the
 repo.
 
 Happy hacking!
+
+## Known Issues / TODOs
+
+  * Supress output to stdout from specs
+  * Randomly and constantly failing feature specs
