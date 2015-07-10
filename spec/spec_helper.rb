@@ -14,9 +14,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.disable_monkey_patching!
 
-  # data_mapper generates huge amount of warnings
-  # There is issue openned for years: https://github.com/datamapper/dm-core/issues/172
-  # config.warnings = true
+  config.warnings = true
 
   if config.files_to_run.one?
     config.default_formatter = 'doc'
@@ -28,6 +26,6 @@ RSpec.configure do |config|
 
   config.before do
     Wimdu::DbConnection.init!('test_')
-    DataMapper.auto_migrate!
+    Wimdu::Property.delete_all
   end
 end

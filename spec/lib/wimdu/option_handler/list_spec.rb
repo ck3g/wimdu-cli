@@ -14,7 +14,7 @@ RSpec.describe Wimdu::OptionHandler::List do
       end
 
       before do
-        allow(Wimdu::Property).to receive(:all).and_return [property]
+        allow(Wimdu::Property).to receive(:published).and_return [property]
       end
 
       it 'outputs summary' do
