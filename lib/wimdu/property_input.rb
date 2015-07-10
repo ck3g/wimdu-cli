@@ -21,10 +21,11 @@ module Wimdu
       puts "#{Wimdu::FieldPresenter.new(field_name).title}: "
       data = STDIN.gets.chomp
       property.public_send(:"#{field_name}=", data)
-      unless property.update_attributes field_name => data
-        display_validation_error field_name
-        handle_field_input field_name
-      end
+
+      return if property.update_attributes field_name => data
+
+      display_validation_error field_name
+      handle_field_input field_name
     end
 
     def display_success_message
