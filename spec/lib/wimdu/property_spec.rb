@@ -10,7 +10,8 @@ RSpec.describe Wimdu::Property do
       end
       it do
         is_expected.to validate_inclusion_of(:property_type)
-          .in_array ['holiday home', 'apartment', 'private room']
+          .in_array(['holiday home', 'apartment', 'private room'])
+          .with_message 'must be one of: holiday home, apartment, private room'
       end
       it do
         is_expected.to validate_numericality_of(:nightly_rate)

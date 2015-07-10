@@ -2,14 +2,18 @@ module Wimdu
   class Property < ActiveRecord::Base
     PROPERTY_TYPES = ['holiday home', 'apartment', 'private room']
 
-    validates :guests, numericality: { only_integer: true,
-                                       message: 'must be a number' },
-                       allow_blank: true
-    validates :nightly_rate, numericality: { only_integer: true,
-                                             message: 'must be a number' },
-                              allow_blank: true
-    validates :property_type, inclusion: { in: PROPERTY_TYPES },
-                              allow_blank: true
+    validates :guests, numericality: {
+      only_integer: true, message: 'must be a number'
+    }, allow_blank: true
+
+    validates :nightly_rate, numericality: {
+      only_integer: true, message: 'must be a number'
+    }, allow_blank: true
+
+    validates :property_type, inclusion: {
+      in: PROPERTY_TYPES,
+      message: "must be one of: #{PROPERTY_TYPES.join(', ')}"
+    }, allow_blank: true
 
     def self.create_uniq
       create slug: uniq_slug
