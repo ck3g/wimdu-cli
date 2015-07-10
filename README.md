@@ -94,3 +94,5 @@ Happy hacking!
 
   * Supress output to stdout from specs
   * Randomly and constantly failing feature specs
+  * Extract whole application into gem
+  * Add migrations support
