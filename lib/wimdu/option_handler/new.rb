@@ -5,26 +5,9 @@ module Wimdu
         property = Property.create_uniq
         puts "Starting with new property #{property.slug}."
         puts
-        fields.each do |field_name, _|
-          handle_field_input field_name, property
-        end
+        PropertyInput.new(property).perform
 
         true
-      end
-
-      private
-
-      def handle_field_input(field_name, property)
-        puts "#{fields[field_name]}: "
-        data = STDIN.gets.chomp
-        property.update field_name => data
-      end
-
-      def fields
-        {
-          title: 'Title',
-          address: 'Address'
-        }
       end
     end
   end
