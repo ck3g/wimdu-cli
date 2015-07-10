@@ -18,7 +18,7 @@ module Wimdu
     end
 
     def handle_field_input(field_name)
-      puts "#{field_name.to_s.capitalize}: "
+      puts "#{Wimdu::FieldPresenter.new(field_name).title}: "
       data = STDIN.gets.chomp
       property.public_send(:"#{field_name}=", data)
       unless property.update_attributes field_name => data

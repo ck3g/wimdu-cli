@@ -5,6 +5,7 @@ require 'active_record'
 
 require 'shoulda-matchers'
 
+require 'wimdu/field_presenter'
 require 'wimdu/slug_generator'
 require 'wimdu/db_connection'
 require 'wimdu/property_input'
