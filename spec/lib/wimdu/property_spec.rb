@@ -1,6 +1,21 @@
 require 'spec_helper'
 
 RSpec.describe Wimdu::Property do
+  describe '.validation' do
+    context 'when valid' do
+      subject { Wimdu::Property.create guests: 2 }
+      it do
+        is_expected.to validate_numericality_of(:guests)
+          .with_message 'must be a number'
+      end
+    end
+
+    context 'when invalid' do
+      subject { Wimdu::Property.new }
+      it { is_expected.to allow_value('').for :guests }
+    end
+  end
+
   describe '.create' do
     it "creates new property" do
       expect {
@@ -29,13 +44,13 @@ RSpec.describe Wimdu::Property do
     context 'when property has no persisted fields' do
       let!(:property) { Wimdu::Property.create_uniq }
 
-      it { is_expected.to eq %i(title address) }
+      it { is_expected.to eq %i(title address guests) }
     end
 
     context 'when property has title' do
       let!(:property) { Wimdu::Property.create title: 'Awesome Room' }
 
-      it { is_expected.to eq %i(address) }
+      it { is_expected.to eq %i(address guests) }
     end
   end
 end

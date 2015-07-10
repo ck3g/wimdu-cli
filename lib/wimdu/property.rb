@@ -1,5 +1,8 @@
 module Wimdu
   class Property < ActiveRecord::Base
+    validates :guests, numericality: { only_integer: true,
+                                       message: 'must be a number' },
+                       if: 'guests.present?'
 
     def self.create_uniq
       create slug: uniq_slug
@@ -30,7 +33,7 @@ module Wimdu
     end
 
     def manageable_fields
-      %i(title address)
+      %i(title address guests)
     end
   end
 end

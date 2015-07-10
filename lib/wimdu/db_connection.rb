@@ -14,6 +14,7 @@ module Wimdu
             t.column :slug, :string
             t.column :title, :string
             t.column :address, :string
+            t.column :guests, :integer
             t.column :status, :string, default: 'draft'
           end
         end

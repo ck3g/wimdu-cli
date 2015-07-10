@@ -3,6 +3,8 @@ require 'ostruct'
 require 'securerandom'
 require 'active_record'
 
+require 'shoulda-matchers'
+
 require 'wimdu/ext/object'
 
 require 'wimdu/slug_generator'
