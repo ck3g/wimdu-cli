@@ -15,16 +15,11 @@ module Wimdu
       message: "must be one of: #{PROPERTY_TYPES.join(', ')}"
     }, allow_blank: true
 
+    scope :published, -> { where status: 'published' }
+    scope :draft, -> { where status: 'draft' }
+
     def self.create_uniq
       create slug: uniq_slug
-    end
-
-    def self.published
-      where status: 'published'
-    end
-
-    def self.draft
-      where status: 'draft'
     end
 
     def missing_fields
