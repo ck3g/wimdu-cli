@@ -5,7 +5,7 @@ module Wimdu
         property = Property.create_uniq
         puts "Starting with new property #{property.slug}."
         puts
-        fields.each do |field_name, _|
+        property.missing_fields.each do |field_name|
           handle_field_input field_name, property
         end
 

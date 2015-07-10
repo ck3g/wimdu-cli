@@ -10,7 +10,7 @@ module Wimdu
         if property
           puts "Continuing with property #{slug}."
           puts
-          %i(address).each do |field_name|
+          property.missing_fields.each do |field_name|
             handle_field_input field_name, property
           end
         else

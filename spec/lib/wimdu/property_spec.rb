@@ -22,4 +22,20 @@ RSpec.describe Wimdu::Property do
       expect(Wimdu::Property.last.slug).to be_truthy
     end
   end
+
+  describe '#missing_fields' do
+    subject { property.missing_fields }
+
+    context 'when property has no persisted fields' do
+      let!(:property) { Wimdu::Property.create_uniq }
+
+      it { is_expected.to eq %i(title address) }
+    end
+
+    context 'when property has title' do
+      let!(:property) { Wimdu::Property.create title: 'Awesome Room' }
+
+      it { is_expected.to eq %i(address) }
+    end
+  end
 end
