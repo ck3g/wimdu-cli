@@ -14,13 +14,9 @@ module Wimdu
     private
 
     def self.uniq_slug
-      slug = generate_uniq_slug
-      slug = generate_uniq_slug while first(slug: slug)
+      slug = SlugGenerator.generate
+      slug = SlugGenerator.generate while first(slug: slug)
       slug
-    end
-
-    def self.generate_uniq_slug
-      SecureRandom.hex(4).upcase
     end
   end
 end
