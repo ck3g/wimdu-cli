@@ -2,7 +2,7 @@ module Wimdu
   module OptionHandler
     class List < Base
       def run
-        properties = Wimdu::Property.all
+        properties = Wimdu::Property.published
         if properties.any?
           puts "Found #{properties.count} offer."
           puts

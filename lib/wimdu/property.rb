@@ -12,6 +12,14 @@ module Wimdu
       create slug: uniq_slug
     end
 
+    def self.published
+      all status: 'published'
+    end
+
+    def self.draft
+      all status: 'draft'
+    end
+
     def missing_fields
       manageable_fields.select { |field| public_send(field).blank? }
     end
