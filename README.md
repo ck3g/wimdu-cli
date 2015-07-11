@@ -28,7 +28,7 @@ should appear in the list of all properties.
   * nightly rate in EUR
   * max guests
   * email
-  * phone number 
+  * phone number
 
 An example session could look like this:
 
